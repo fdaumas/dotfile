@@ -47,15 +47,21 @@ local plugins = {
 			})
 		end,
 	},
+	-- python
+	"deoplete-plugins/deoplete-jedi",
 
 	-- theme
 	{ "catppuccin/nvim", name = "catppuccin" },
+
+	{ "lukas-reineke/indent-blankline.nvim" },
+
 	"nvim-lualine/lualine.nvim",
 	"nvim-tree/nvim-web-devicons",
 	"norcalli/nvim-colorizer.lua",
 
 	"nvim-lua/plenary.nvim",
 	"nvim-treesitter/nvim-treesitter",
+
 
 	"nvim-tree/nvim-tree.lua",
 	"nvim-telescope/telescope.nvim",
@@ -73,8 +79,10 @@ local plugins = {
 		end
 	},
 	'numToStr/Comment.nvim',
-	"startup-nvim/startup.nvim",
 
+	-- no mandatory
+	"startup-nvim/startup.nvim",
+	"andweeb/presence.nvim",
 }
 
 local opts = {}
