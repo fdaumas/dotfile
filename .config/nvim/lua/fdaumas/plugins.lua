@@ -47,6 +47,63 @@ local plugins = {
 			})
 		end,
 	},
+	-- -- motion
+	{
+		"folke/flash.nvim",
+		event = "VeryLazy",
+		opts = {},
+		keys = {
+			{
+				"s",
+				mode = { "n", "x", "o" },
+				function()
+				require("flash").jump({
+					search = {
+						mode = function(str)
+							return "\\<" .. str
+						end,
+					}
+				})
+				end,
+				desc = "Flash"
+			},
+			{
+				"S",
+				mode = { "n", "o", "x" },
+				function() require("flash").treesitter()
+				end,
+				desc = "Flash Treesitter"
+			},
+			{
+				"r",
+				mode = "o",
+				function() require("flash").remote()
+				end,
+				desc = "Remote Flash"
+			},
+			{
+				"R",
+				mode = { "o", "x" },
+				function() require("flash").treesitter_search()
+				end,
+				desc = "Treesitter Search"
+			},
+			{
+				"<c-s>",
+				mode = { "c" },
+				function() require("flash").toggle()
+				end,
+				desc = "Toggle Flash Search"
+			},
+		},
+	},
+	-- markdown
+	{
+		"iamcco/markdown-preview.nvim",
+		config = function()
+			vim.fn["mkdp#util#install"]()
+		end,
+	},
 	-- python
 	"deoplete-plugins/deoplete-jedi",
 
@@ -55,12 +112,26 @@ local plugins = {
 
 	{ "lukas-reineke/indent-blankline.nvim" },
 
-	"nvim-lualine/lualine.nvim",
-	"nvim-tree/nvim-web-devicons",
-	"norcalli/nvim-colorizer.lua",
 
 	"nvim-lua/plenary.nvim",
-	"nvim-treesitter/nvim-treesitter",
+
+	{
+		"nvim-treesitter/nvim-treesitter",
+		autotag = {
+			enable = true,
+			enable_rename = true,
+			enable_close = true,
+			enable_close_on_slash = true,
+			filetypes = {
+				'html', 'javascript', 'typescript', 'javascriptreact',
+				'typescriptreact', 'svelte', 'vue', 'tsx', 'jsx', 'rescript',
+				'xml', 'php', 'markdown', 'astro', 'glimmer', 'handlebars',
+				'hbs'
+			},
+		}
+	},
+
+	{ "windwp/nvim-ts-autotag" },
 
 
 	"nvim-tree/nvim-tree.lua",
@@ -81,8 +152,11 @@ local plugins = {
 	'numToStr/Comment.nvim',
 
 	-- no mandatory
+	"norcalli/nvim-colorizer.lua",
 	"startup-nvim/startup.nvim",
 	"andweeb/presence.nvim",
+	"nvim-lualine/lualine.nvim",
+	"nvim-tree/nvim-web-devicons",
 }
 
 local opts = {}
